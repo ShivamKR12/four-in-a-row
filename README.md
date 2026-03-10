@@ -4,6 +4,12 @@ A simple **Connect Four / Four in a Row** game written in **Python using Pygame*
 
 The player competes against a computer AI that looks ahead several moves to choose the best move.
 
+## 🎮 Download
+
+[![Download Latest Release](https://img.shields.io/badge/Download-Latest%20Release-brightgreen?style=for-the-badge)](https://github.com/ShivamKR12/four-in-a-row/releases/latest)
+
+Download the standalone Windows executable (`four-in-a-row.exe`) from the [releases page](https://github.com/ShivamKR12/four-in-a-row/releases) – no Python installation required!
+
 ## Gameplay
 
 * The board is **7 columns × 6 rows**.
@@ -24,6 +30,12 @@ The first player to connect four wins. If the board fills up with no winner, the
 * The computer will then make its move automatically.
 
 Press **ESC** or close the window to quit the game.
+
+## 📸 Screenshots
+
+| Gameplay | AI Playing | Game Over |
+|----------|-----------|-----------|
+| ![Gameplay 1](screenshots/0.png) | ![Gameplay 2](screenshots/2.png) | ![Gameplay 3](screenshots/1.png) |
 
 ## Features
 
