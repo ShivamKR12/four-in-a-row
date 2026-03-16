@@ -143,7 +143,7 @@ Increasing this value makes the AI stronger but significantly slower.
 
 ## License
 
-This project is provided for educational purposes. Feel free to modify and experiment with the code.
+This project is under the [MIT LICENSE](LICENSE) but is also provided for educational purposes. Feel free to modify and experiment with the code.
 
 ## Credits
 
