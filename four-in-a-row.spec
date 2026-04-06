@@ -5,7 +5,7 @@ a = Analysis(
     ['four-in-a-row.py'],
     pathex=[],
     binaries=[],
-    datas=[('4row_arrow.png', '.'), ('4row_black.png', '.'), ('4row_board.png', '.'), ('4row_computerwinner.png', '.'), ('4row_humanwinner.png', '.'), ('4row_red.png', '.'), ('4row_tie.png', '.'), ('four-in-a-row.png', '.')],
+    datas=[('4row_arrow.png', '.'), ('4row_black.png', '.'), ('4row_board.png', '.'), ('4row_computerwinner.png', '.'), ('4row_humanwinner.png', '.'), ('4row_red.png', '.'), ('4row_tie.png', '.')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
