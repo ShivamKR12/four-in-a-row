@@ -1,4 +1,10 @@
-import random, copy, sys, pygame, os
+# /// script
+# dependencies = [
+#     "pygame-ce",
+# ]
+# ///
+
+import random, copy, sys, pygame, asyncio
 from pygame.locals import *
 
 BOARDWIDTH = 7  # how many spaces wide the board is
@@ -28,14 +34,7 @@ EMPTY = None
 HUMAN = 'human'
 COMPUTER = 'computer'
 
-def resource_path(relative_path):
-    try:
-        base_path = sys._MEIPASS
-    except Exception:
-        base_path = os.path.abspath(".")
-    return os.path.join(base_path, relative_path)
-
-def main():
+async def main():
     global FPSCLOCK, DISPLAYSURF, REDPILERECT, BLACKPILERECT, REDTOKENIMG
     global BLACKTOKENIMG, BOARDIMG, ARROWIMG, ARROWRECT, HUMANWINNERIMG
     global COMPUTERWINNERIMG, WINNERRECT, TIEWINNERIMG
@@ -45,25 +44,25 @@ def main():
     DISPLAYSURF = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
     pygame.display.set_caption('Four in a Row')
 
-    logo = pygame.image.load(resource_path('icon.png'))
+    logo = pygame.image.load('icon.png')
     pygame.display.set_icon(logo)
 
     REDPILERECT = pygame.Rect(int(SPACESIZE / 2), WINDOWHEIGHT - int(3 * SPACESIZE / 2), SPACESIZE, SPACESIZE)
     BLACKPILERECT = pygame.Rect(WINDOWWIDTH - int(3 * SPACESIZE / 2), WINDOWHEIGHT - int(3 * SPACESIZE / 2), SPACESIZE, SPACESIZE)
-    REDTOKENIMG = pygame.image.load(resource_path('4row_red.png'))
+    REDTOKENIMG = pygame.image.load('4row_red.png')
     REDTOKENIMG = pygame.transform.smoothscale(REDTOKENIMG, (SPACESIZE, SPACESIZE))
-    BLACKTOKENIMG = pygame.image.load(resource_path('4row_black.png'))
+    BLACKTOKENIMG = pygame.image.load('4row_black.png')
     BLACKTOKENIMG = pygame.transform.smoothscale(BLACKTOKENIMG, (SPACESIZE, SPACESIZE))
-    BOARDIMG = pygame.image.load(resource_path('4row_board.png'))
+    BOARDIMG = pygame.image.load('4row_board.png')
     BOARDIMG = pygame.transform.smoothscale(BOARDIMG, (SPACESIZE, SPACESIZE))
 
-    HUMANWINNERIMG = pygame.image.load(resource_path('4row_humanwinner.png'))
-    COMPUTERWINNERIMG = pygame.image.load(resource_path('4row_computerwinner.png'))
-    TIEWINNERIMG = pygame.image.load(resource_path('4row_tie.png'))
+    HUMANWINNERIMG = pygame.image.load('4row_humanwinner.png')
+    COMPUTERWINNERIMG = pygame.image.load('4row_computerwinner.png')
+    TIEWINNERIMG = pygame.image.load('4row_tie.png')
     WINNERRECT = HUMANWINNERIMG.get_rect()
     WINNERRECT.center = (int(WINDOWWIDTH / 2), int(WINDOWHEIGHT / 2))
 
-    ARROWIMG = pygame.image.load(resource_path('4row_arrow.png'))
+    ARROWIMG = pygame.image.load('4row_arrow.png')
     ARROWRECT = ARROWIMG.get_rect()
     ARROWRECT.left = REDPILERECT.right + 10
     ARROWRECT.centery = REDPILERECT.centery
@@ -71,11 +70,13 @@ def main():
     isFirstGame = True
 
     while True:
-        runGame(isFirstGame)
+        await runGame(isFirstGame)
         isFirstGame = False
 
+        await asyncio.sleep(0) # allow other tasks to run while waiting for the next game to start
 
-def runGame(isFirstGame):
+
+async def runGame(isFirstGame):
     if isFirstGame:
         # Let the computer go first on the first game, so the player
         # can see how the tokens are dragged from the token piles.
@@ -95,7 +96,7 @@ def runGame(isFirstGame):
     while True: # main game loop
         if turn == HUMAN:
             # Human player's turn.
-            getHumanMove(mainBoard, showHelp)
+            await getHumanMove(mainBoard, showHelp)
             if showHelp:
                 # turn off help arrow after the first move
                 showHelp = False
@@ -106,7 +107,7 @@ def runGame(isFirstGame):
         else:
             # Computer player's turn.
             column = getComputerMove(mainBoard)
-            animateComputerMoving(mainBoard, column)
+            await animateComputerMoving(mainBoard, column)
             makeMove(mainBoard, BLACK, column)
             if isWinner(mainBoard, BLACK):
                 winnerImg = COMPUTERWINNERIMG
@@ -117,6 +118,8 @@ def runGame(isFirstGame):
             # A completely filled board means it's a tie.
             winnerImg = TIEWINNERIMG
             break
+
+        await asyncio.sleep(0) # allow other tasks to run while waiting for the next turn
 
     while True:
         # Keep looping until player clicks the mouse or quits.
@@ -130,6 +133,8 @@ def runGame(isFirstGame):
                 sys.exit()
             elif event.type == MOUSEBUTTONUP:
                 return
+        
+        await asyncio.sleep(0) # allow other tasks to run while waiting for player input
 
 
 def makeMove(board, player, column):
@@ -176,7 +181,7 @@ def getNewBoard():
     return board
 
 
-def getHumanMove(board, isFirstMove):
+async def getHumanMove(board, isFirstMove):
     draggingToken = False
     tokenx, tokeny = None, None
     while True:
@@ -197,7 +202,7 @@ def getHumanMove(board, isFirstMove):
                     # let go at the top of the screen.
                     column = int((tokenx - XMARGIN) / SPACESIZE)
                     if isValidMove(board, column):
-                        animateDroppingToken(board, column, RED)
+                        await animateDroppingToken(board, column, RED)
                         board[column][getLowestEmptySpace(board, column)] = RED
                         drawBoard(board)
                         pygame.display.update()
@@ -216,8 +221,10 @@ def getHumanMove(board, isFirstMove):
         pygame.display.update()
         FPSCLOCK.tick()
 
+        await asyncio.sleep(0) # allow other tasks to run while waiting for player input
 
-def animateDroppingToken(board, column, color):
+
+async def animateDroppingToken(board, column, color):
     x = XMARGIN + column * SPACESIZE
     y = YMARGIN - SPACESIZE
     dropSpeed = 1.0
@@ -233,8 +240,10 @@ def animateDroppingToken(board, column, color):
         pygame.display.update()
         FPSCLOCK.tick()
 
+        await asyncio.sleep(0) # allow other tasks to run while animating
 
-def animateComputerMoving(board, column):
+
+async def animateComputerMoving(board, column):
     x = BLACKPILERECT.left
     y = BLACKPILERECT.top
     speed = 1.0
@@ -245,6 +254,9 @@ def animateComputerMoving(board, column):
         drawBoard(board, {'x':x, 'y':y, 'color':BLACK})
         pygame.display.update()
         FPSCLOCK.tick()
+
+        await asyncio.sleep(0) # allow other tasks to run while animating
+
     # moving the black tile over
     y = YMARGIN - SPACESIZE
     speed = 1.0
@@ -254,8 +266,11 @@ def animateComputerMoving(board, column):
         drawBoard(board, {'x':x, 'y':y, 'color':BLACK})
         pygame.display.update()
         FPSCLOCK.tick()
+
+        await asyncio.sleep(0) # allow other tasks to run while animating
+
     # dropping the black tile
-    animateDroppingToken(board, column, BLACK)
+    await animateDroppingToken(board, column, BLACK)
 
 
 def getComputerMove(board):
@@ -363,5 +378,4 @@ def isWinner(board, tile):
     return False
 
 
-if __name__ == '__main__':
-    main()
+asyncio.run(main())

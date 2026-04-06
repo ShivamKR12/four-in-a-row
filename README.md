@@ -4,7 +4,13 @@ A simple **Connect Four / Four in a Row** game written in **Python using Pygame*
 
 The player competes against a computer AI that looks ahead several moves to choose the best move.
 
-## 🎮 Download
+## 🌐 Play Online
+
+[![Play in Browser](https://img.shields.io/badge/Play-In%20Browser-blue?style=for-the-badge)](https://shivamkr12.github.io/four-in-a-row/)
+
+Play the game directly in your web browser! Deployed automatically using [Pygbag](https://pypi.org/project/pygbag/).
+
+##  Download
 
 [![Download Latest Release](https://img.shields.io/badge/Download-Latest%20Release-brightgreen?style=for-the-badge)](https://github.com/ShivamKR12/four-in-a-row/releases/latest)
 
@@ -59,7 +65,7 @@ pip install pygame-ce
 
 ## Running the Game
 
-Run the game directly with Python:
+Run the desktop game directly with Python:
 
 ```bash
 python four-in-a-row.py
