@@ -1,8 +1,21 @@
-# Four in a Row (Connect Four) – Pygame
+<div align="center">
 
-A simple **Connect Four / Four in a Row** game written in **Python using Pygame**.
+# Four in a Row
 
-The player competes against a computer AI that looks ahead several moves to choose the best move.
+![Python](https://img.shields.io/badge/Python-3.9%2B-3776AB?logo=python&logoColor=white)
+![pygame-ce](https://img.shields.io/badge/Library-pygame--ce-1D9BF0?logo=pygame&logoColor=white)
+![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey)
+![GitHub Actions](https://img.shields.io/badge/CI-GitHub%20Actions-2088FF?logo=github-actions&logoColor=white)
+[![Build Desktop Executables](https://github.com/ShivamKR12/four-in-a-row/actions/workflows/build.yml/badge.svg)](https://github.com/ShivamKR12/four-in-a-row/actions/workflows/build.yml)
+![License](https://img.shields.io/badge/License-MIT-green.svg)
+
+</div>
+
+A simple Connect Four / Four in a Row game written in Python and Pygame Community Edition. The player competes against a computer AI that looks ahead several moves to choose the best move.
+
+<div align="center">
+  <img src="screenshots/0.png" alt="Gameplay Screenshot" width="600">
+</div>
 
 ## 🌐 Play Online
 
@@ -10,151 +23,65 @@ The player competes against a computer AI that looks ahead several moves to choo
 
 Play the game directly in your web browser! Deployed automatically using [Pygbag](https://pypi.org/project/pygbag/).
 
-##  Download
+## 🚀 Features
 
-[![Download Latest Release](https://img.shields.io/badge/Download-Latest%20Release-brightgreen?style=for-the-badge)](https://github.com/ShivamKR12/four-in-a-row/releases/latest)
+*   Simple drag-and-drop gameplay.
+*   Basic AI opponent that calculates the best moves.
+*   Animated token dropping and computer moves.
+*   Custom board and token graphics.
+*   Win / loss / tie screens.
 
-Download the standalone Windows executable (`four-in-a-row.exe`) from the [releases page](https://github.com/ShivamKR12/four-in-a-row/releases) – no Python installation required!
+## 🎮 Getting Started
 
-## Gameplay
+You can easily play the game by downloading the latest version for your operating system or playing it in your browser.
 
-* The board is **7 columns × 6 rows**.
-* The **player uses red tokens**.
-* The **computer uses black tokens**.
-* The goal is to connect **four tokens in a row**:
+1.  Go to the [**Releases**](https://github.com/ShivamKR12/four-in-a-row/releases) page.
+2.  Download the appropriate file for your system (Windows, macOS, or Linux).
+3.  Unzip the file and run the `four-in-a-row` executable.
 
-  * Horizontally
-  * Vertically
-  * Diagonally
+**Note:** You may need to grant permissions for the application to run on macOS and Linux.
 
-The first player to connect four wins. If the board fills up with no winner, the game ends in a **tie**.
+## 🕹️ How to Play
 
-## Controls
+*   **Mouse Drag:** Drag the red token from the left pile.
+*   **Mouse Drop:** Drop it above the board in the column where you want to place it.
+*   The computer will then make its move automatically.
+*   The goal is to connect **four tokens in a row** (Horizontally, Vertically, or Diagonally).
+*   **Escape:** Quit the game.
 
-* **Drag the red token** from the left pile.
-* **Drop it above the board** in the column where you want to place it.
-* The computer will then make its move automatically.
+## 🛠️ Building From Source
 
-Press **ESC** or close the window to quit the game.
+If you want to build the game yourself, you'll need Python 3 and some dependencies.
 
-## 📸 Screenshots
+1.  **Clone the repository:**
+    ```sh
+    git clone https://github.com/ShivamKR12/four-in-a-row.git
+    cd four-in-a-row
+    ```
 
-| Gameplay | AI Playing | Game Over |
-|----------|-----------|-----------|
-| ![Gameplay 1](screenshots/0.png) | ![Gameplay 2](screenshots/2.png) | ![Gameplay 3](screenshots/1.png) |
+2.  **Create a virtual environment (recommended):**
+    ```sh
+    python -m venv venv
+    source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+    ```
 
-## Features
+3.  **Install dependencies:**
+    ```sh
+    pip install pygame-ce pyinstaller
+    ```
 
-* Simple **drag-and-drop gameplay**
-* Basic **AI opponent**
-* Animated token dropping
-* Computer move animation
-* Win / loss / tie screens
-* Custom board and token graphics
+4.  **Run the game:**
+    ```sh
+    python four-in-a-row.py
+    ```
 
-## Requirements
+5.  **Build the executable:**
+    This project uses PyInstaller to create standalone executables.
+    ```sh
+    pyinstaller four-in-a-row.spec
+    ```
+    The final executable will be in the `dist/` directory.
 
-* Python 3.9+
-* Pygame CE
+## 📄 License
 
-Install dependencies:
-
-```bash
-pip install pygame-ce
-```
-
-## Running the Game
-
-Run the desktop game directly with Python:
-
-```bash
-python four-in-a-row.py
-```
-
-## Building a Windows Executable
-
-The project uses **PyInstaller** to generate a standalone `.exe`.
-
-Install PyInstaller:
-
-```bash
-pip install pyinstaller
-```
-
-Build the executable:
-
-```bash
-pyinstaller four-in-a-row.spec
-```
-
-The compiled executable will appear in:
-
-```
-dist/four-in-a-row.exe
-```
-
-This file can run on Windows **without Python installed**.
-
-## Automated Builds (GitHub Actions)
-
-This repository includes a GitHub Actions workflow that automatically:
-
-1. Installs Python
-2. Installs dependencies
-3. Builds the executable using PyInstaller
-4. Publishes the `.exe` as a **GitHub Release**
-
-The workflow runs when:
-
-* Code is pushed to the **master branch**
-* The workflow is triggered manually
-
-Workflow file:
-
-```
-.github/workflows/build.yml
-```
-
-## Project Structure
-
-```
-four-in-a-row/
-│
-├── four-in-a-row.py        # main game
-├── four-in-a-row.spec      # PyInstaller build configuration
-├── requirements.txt
-├── README.md
-│
-├── 4row_arrow.png
-├── 4row_black.png
-├── 4row_board.png
-├── 4row_computerwinner.png
-├── 4row_humanwinner.png
-├── 4row_red.png
-├── 4row_tie.png
-│
-├── four-in-a-row.png       # window icon
-└── four-in-a-row.ico       # executable icon
-```
-
-## AI Difficulty
-
-The computer AI looks ahead a limited number of moves:
-
-```python
-DIFFICULTY = 2
-```
-
-Increasing this value makes the AI stronger but significantly slower.
-
-## License
-
-This project is under the [MIT LICENSE](LICENSE) but is also provided for educational purposes. Feel free to modify and experiment with the code.
-
-## Credits
-
-Game implemented using:
-
-* Python
-* Pygame CE
-* PyInstaller
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
