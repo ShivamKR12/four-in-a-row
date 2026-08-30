@@ -39,11 +39,20 @@ async def main():
     global BLACKTOKENIMG, BOARDIMG, ARROWIMG, ARROWRECT, HUMANWINNERIMG
     global COMPUTERWINNERIMG, WINNERRECT, TIEWINNERIMG
 
+    __ANDROID__ = hasattr(sys, "getandroidapilevel")
+    __EMSCRIPTEN__ = hasattr(sys, "_emscripten_info")
+
     pygame.init()
     FPSCLOCK = pygame.time.Clock()
-    DISPLAYSURF = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT))
+    if __ANDROID__:
+        DISPLAYSURF = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT),
+                                        pygame.SCALED | pygame.FULLSCREEN)
+    elif __EMSCRIPTEN__:
+        DISPLAYSURF = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT), 0)
+    else:
+        DISPLAYSURF = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT),
+                                        pygame.SCALED | pygame.RESIZABLE)
     pygame.display.set_caption('Four in a Row')
-
     logo = pygame.image.load('icon.png')
     pygame.display.set_icon(logo)
 

@@ -1,160 +1,70 @@
-# Four in a Row (Connect Four) – Pygame
+<div align="center">
 
-A simple **Connect Four / Four in a Row** game written in **Python using Pygame**.
+# Four in a Row Web
 
-The player competes against a computer AI that looks ahead several moves to choose the best move.
+![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)
+![pygame-ce](https://img.shields.io/badge/Library-pygame--ce-1D9BF0?logo=pygame&logoColor=white)
+![Platform](https://img.shields.io/badge/Platform-Web-lightgrey)
+![GitHub Actions](https://img.shields.io/badge/CI-GitHub%20Actions-2088FF?logo=github-actions&logoColor=white)
+[![Deploy to Web](https://github.com/ShivamKR12/four-in-a-row/actions/workflows/pygbag.yml/badge.svg)](https://github.com/ShivamKR12/four-in-a-row/actions/workflows/pygbag.yml)
+![License](https://img.shields.io/badge/License-MIT-green.svg)
 
-## 🌐 Play Online
+</div>
 
-[![Play in Browser](https://img.shields.io/badge/Play-In%20Browser-blue?style=for-the-badge)](https://shivamkr12.github.io/four-in-a-row/)
+A browser-ready implementation of the classic Connect Four game built with Python and Pygame Community Edition. Drop your discs and connect four in a row to win, playable directly in your browser via WebAssembly and Pygbag!
 
-Play the game directly in your web browser! Deployed automatically using [Pygbag](https://pypi.org/project/pygbag/).
+## 🚀 Features
 
-##  Download
+*   Classic Four-in-a-Row gameplay mechanics.
+*   Web-ready deployment out of the box.
+*   Clean, colorful Pygame-CE graphics.
+*   Playable directly in the browser!
 
-[![Download Latest Release](https://img.shields.io/badge/Download-Latest%20Release-brightgreen?style=for-the-badge)](https://github.com/ShivamKR12/four-in-a-row/releases/latest)
+## 🎮 Getting Started
 
-Download the standalone Windows executable (`four-in-a-row.exe`) from the [releases page](https://github.com/ShivamKR12/four-in-a-row/releases) – no Python installation required!
+You can easily play the game online or run it locally on your computer.
 
-## Gameplay
+1.  Go to the [**GitHub Pages**](https://ShivamKR12.github.io/four-in-a-row/) to play directly in your browser.
+2.  Wait for the WebAssembly to load, and enjoy!
 
-* The board is **7 columns × 6 rows**.
-* The **player uses red tokens**.
-* The **computer uses black tokens**.
-* The goal is to connect **four tokens in a row**:
+## 🕹️ How to Play
 
-  * Horizontally
-  * Vertically
-  * Diagonally
+*   **Mouse Click:** Drop a disc into the column where your cursor is hovering.
+*   **Goal:** Be the first to connect four of your discs horizontally, vertically, or diagonally.
 
-The first player to connect four wins. If the board fills up with no winner, the game ends in a **tie**.
+## 🛠️ Building From Source
 
-## Controls
+If you want to run the game natively or compile it yourself, you'll need Python 3 and some dependencies.
 
-* **Drag the red token** from the left pile.
-* **Drop it above the board** in the column where you want to place it.
-* The computer will then make its move automatically.
+1.  **Clone the repository:**
+    ```sh
+    git clone https://github.com/ShivamKR12/four-in-a-row.git
+    cd four-in-a-row
+    ```
 
-Press **ESC** or close the window to quit the game.
+2.  **Create a virtual environment (recommended):**
+    ```sh
+    python -m venv venv
+    source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+    ```
 
-## 📸 Screenshots
+3.  **Install dependencies:**
+    ```sh
+    pip install pygame-ce pygbag
+    ```
 
-| Gameplay | AI Playing | Game Over |
-|----------|-----------|-----------|
-| ![Gameplay 1](screenshots/0.png) | ![Gameplay 2](screenshots/2.png) | ![Gameplay 3](screenshots/1.png) |
+4.  **Run natively:**
+    ```sh
+    python main.py
+    ```
 
-## Features
+5.  **Build for the web locally:**
+    This project uses Pygbag to run Pygame on the web.
+    ```sh
+    pygbag main.py
+    ```
+    Navigate to `http://localhost:8000` to test it in your browser!
 
-* Simple **drag-and-drop gameplay**
-* Basic **AI opponent**
-* Animated token dropping
-* Computer move animation
-* Win / loss / tie screens
-* Custom board and token graphics
+## 📄 License
 
-## Requirements
-
-* Python 3.9+
-* Pygame CE
-
-Install dependencies:
-
-```bash
-pip install pygame-ce
-```
-
-## Running the Game
-
-Run the desktop game directly with Python:
-
-```bash
-python four-in-a-row.py
-```
-
-## Building a Windows Executable
-
-The project uses **PyInstaller** to generate a standalone `.exe`.
-
-Install PyInstaller:
-
-```bash
-pip install pyinstaller
-```
-
-Build the executable:
-
-```bash
-pyinstaller four-in-a-row.spec
-```
-
-The compiled executable will appear in:
-
-```
-dist/four-in-a-row.exe
-```
-
-This file can run on Windows **without Python installed**.
-
-## Automated Builds (GitHub Actions)
-
-This repository includes a GitHub Actions workflow that automatically:
-
-1. Installs Python
-2. Installs dependencies
-3. Builds the executable using PyInstaller
-4. Publishes the `.exe` as a **GitHub Release**
-
-The workflow runs when:
-
-* Code is pushed to the **master branch**
-* The workflow is triggered manually
-
-Workflow file:
-
-```
-.github/workflows/build.yml
-```
-
-## Project Structure
-
-```
-four-in-a-row/
-│
-├── four-in-a-row.py        # main game
-├── four-in-a-row.spec      # PyInstaller build configuration
-├── requirements.txt
-├── README.md
-│
-├── 4row_arrow.png
-├── 4row_black.png
-├── 4row_board.png
-├── 4row_computerwinner.png
-├── 4row_humanwinner.png
-├── 4row_red.png
-├── 4row_tie.png
-│
-├── four-in-a-row.png       # window icon
-└── four-in-a-row.ico       # executable icon
-```
-
-## AI Difficulty
-
-The computer AI looks ahead a limited number of moves:
-
-```python
-DIFFICULTY = 2
-```
-
-Increasing this value makes the AI stronger but significantly slower.
-
-## License
-
-This project is under the [MIT LICENSE](LICENSE) but is also provided for educational purposes. Feel free to modify and experiment with the code.
-
-## Credits
-
-Game implemented using:
-
-* Python
-* Pygame CE
-* PyInstaller
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
