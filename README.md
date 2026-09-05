@@ -1,57 +1,40 @@
 <div align="center">
 
-# Four in a Row
+# Four in a Row Web
 
-![Python](https://img.shields.io/badge/Python-3.9%2B-3776AB?logo=python&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)
 ![pygame-ce](https://img.shields.io/badge/Library-pygame--ce-1D9BF0?logo=pygame&logoColor=white)
-![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey)
+![Platform](https://img.shields.io/badge/Platform-Web-lightgrey)
 ![GitHub Actions](https://img.shields.io/badge/CI-GitHub%20Actions-2088FF?logo=github-actions&logoColor=white)
-[![Build Desktop Executables](https://github.com/ShivamKR12/four-in-a-row/actions/workflows/build.yml/badge.svg)](https://github.com/ShivamKR12/four-in-a-row/actions/workflows/build.yml)
+[![Deploy to Web](https://github.com/ShivamKR12/four-in-a-row/actions/workflows/pygbag.yml/badge.svg)](https://github.com/ShivamKR12/four-in-a-row/actions/workflows/pygbag.yml)
 ![License](https://img.shields.io/badge/License-MIT-green.svg)
 
 </div>
 
-A simple Connect Four / Four in a Row game written in Python and Pygame Community Edition. The player competes against a computer AI that looks ahead several moves to choose the best move.
-
-<div align="center">
-  <img src="screenshots/0.png" alt="Gameplay Screenshot" width="600">
-</div>
-
-## 🌐 Play Online
-
-[![Play in Browser](https://img.shields.io/badge/Play-In%20Browser-blue?style=for-the-badge)](https://shivamkr12.github.io/four-in-a-row/)
-
-Play the game directly in your web browser! Deployed automatically using [Pygbag](https://pypi.org/project/pygbag/).
+A browser-ready implementation of the classic Connect Four game built with Python and Pygame Community Edition. Drop your discs and connect four in a row to win, playable directly in your browser via WebAssembly and Pygbag!
 
 ## 🚀 Features
 
-*   Simple drag-and-drop gameplay.
-*   Basic AI opponent that calculates the best moves.
-*   Animated token dropping and computer moves.
-*   Custom board and token graphics.
-*   Win / loss / tie screens.
+*   Classic Four-in-a-Row gameplay mechanics.
+*   Web-ready deployment out of the box.
+*   Clean, colorful Pygame-CE graphics.
+*   Playable directly in the browser!
 
 ## 🎮 Getting Started
 
-You can easily play the game by downloading the latest version for your operating system or playing it in your browser.
+You can easily play the game online or run it locally on your computer.
 
-1.  Go to the [**Releases**](https://github.com/ShivamKR12/four-in-a-row/releases) page.
-2.  Download the appropriate file for your system (Windows, macOS, or Linux).
-3.  Unzip the file and run the `four-in-a-row` executable.
-
-**Note:** You may need to grant permissions for the application to run on macOS and Linux.
+1.  Go to the [**GitHub Pages**](https://ShivamKR12.github.io/four-in-a-row/) to play directly in your browser.
+2.  Wait for the WebAssembly to load, and enjoy!
 
 ## 🕹️ How to Play
 
-*   **Mouse Drag:** Drag the red token from the left pile.
-*   **Mouse Drop:** Drop it above the board in the column where you want to place it.
-*   The computer will then make its move automatically.
-*   The goal is to connect **four tokens in a row** (Horizontally, Vertically, or Diagonally).
-*   **Escape:** Quit the game.
+*   **Mouse Click:** Drop a disc into the column where your cursor is hovering.
+*   **Goal:** Be the first to connect four of your discs horizontally, vertically, or diagonally.
 
 ## 🛠️ Building From Source
 
-If you want to build the game yourself, you'll need Python 3 and some dependencies.
+If you want to run the game natively or compile it yourself, you'll need Python 3 and some dependencies.
 
 1.  **Clone the repository:**
     ```sh
@@ -67,20 +50,20 @@ If you want to build the game yourself, you'll need Python 3 and some dependenci
 
 3.  **Install dependencies:**
     ```sh
-    pip install pygame-ce pyinstaller
+    pip install pygame-ce pygbag
     ```
 
-4.  **Run the game:**
+4.  **Run natively:**
     ```sh
-    python four-in-a-row.py
+    python main.py
     ```
 
-5.  **Build the executable:**
-    This project uses PyInstaller to create standalone executables.
+5.  **Build for the web locally:**
+    This project uses Pygbag to run Pygame on the web.
     ```sh
-    pyinstaller four-in-a-row.spec
+    pygbag main.py
     ```
-    The final executable will be in the `dist/` directory.
+    Navigate to `http://localhost:8000` to test it in your browser!
 
 ## 📄 License
 
