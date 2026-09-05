@@ -3,7 +3,7 @@ name: Build Desktop Executables
 on:
   push:
     paths:
-      - 'four-in-a-row.py'
+      - 'main.py'
       - 'four-in-a-row.spec'
       - '.github/workflows/build.yml'
   workflow_dispatch:
@@ -30,7 +30,7 @@ jobs:
           sudo apt-get install -y libsdl2-dev libsdl2-image-dev libsdl2-mixer-dev libsdl2-ttf-dev
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.13'
 
@@ -44,15 +44,15 @@ jobs:
 
       - name: Archive Windows executable
         if: runner.os == 'Windows'
-        run: Compress-Archive -Path dist/four-in-a-row.exe -DestinationPath four-in-a-row-windows.zip
+        run: Compress-Archive -Path dist/Four-in-a-Row.exe -DestinationPath four-in-a-row-windows.zip
 
       - name: Archive Linux executable
         if: runner.os == 'Linux'
-        run: tar -czvf four-in-a-row-linux.tar.gz -C dist four-in-a-row
+        run: tar -czvf four-in-a-row-linux.tar.gz -C dist Four-in-a-Row
 
       - name: Archive macOS application
         if: runner.os == 'macOS'
-        run: zip -j four-in-a-row-macos.zip dist/four-in-a-row
+        run: zip -j four-in-a-row-macos.zip dist/Four-in-a-Row
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
@@ -81,3 +81,30 @@ jobs:
             artifacts/four-in-a-row-Windows/four-in-a-row-windows.zip
             artifacts/four-in-a-row-Linux/four-in-a-row-linux.tar.gz
             artifacts/four-in-a-row-macOS/four-in-a-row-macos.zip
+
+      - name: Setup Butler
+        uses: remarkablegames/setup-butler@v1
+
+      - name: Publish Windows to itch.io via Butler
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+        run: |
+          mkdir -p push_win
+          cp artifacts/four-in-a-row-Windows/four-in-a-row-windows.zip push_win/
+          butler push push_win shivamkr12/four-in-a-row:windows --userversion v${{ github.run_number }}
+
+      - name: Publish Linux to itch.io via Butler
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+        run: |
+          mkdir -p push_linux
+          cp artifacts/four-in-a-row-Linux/four-in-a-row-linux.tar.gz push_linux/
+          butler push push_linux shivamkr12/four-in-a-row:linux --userversion v${{ github.run_number }}
+
+      - name: Publish macOS to itch.io via Butler
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+        run: |
+          mkdir -p push_mac
+          cp artifacts/four-in-a-row-macOS/four-in-a-row-macos.zip push_mac/
+          butler push push_mac shivamkr12/four-in-a-row:mac --userversion v${{ github.run_number }}

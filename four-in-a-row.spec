@@ -2,7 +2,7 @@
 
 
 a = Analysis(
-    ['four-in-a-row.py'],
+    ['main.py'],
     pathex=[],
     binaries=[],
     datas=[('4row_arrow.png', '.'), ('4row_black.png', '.'), ('4row_board.png', '.'), ('4row_computerwinner.png', '.'), ('4row_humanwinner.png', '.'), ('4row_red.png', '.'), ('4row_tie.png', '.')],
@@ -22,7 +22,7 @@ exe = EXE(
     a.binaries,
     a.datas,
     [],
-    name='four-in-a-row',
+    name='Four-in-a-Row',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
