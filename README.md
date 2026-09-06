@@ -6,7 +6,6 @@
 ![pygame-ce](https://img.shields.io/badge/Library-pygame--ce-1D9BF0?logo=pygame&logoColor=white)
 ![Platform](https://img.shields.io/badge/Platform-Web-lightgrey)
 ![GitHub Actions](https://img.shields.io/badge/CI-GitHub%20Actions-2088FF?logo=github-actions&logoColor=white)
-[![Deploy to Web](https://github.com/ShivamKR12/four-in-a-row/actions/workflows/pygbag.yml/badge.svg)](https://github.com/ShivamKR12/four-in-a-row/actions/workflows/pygbag.yml)
 ![License](https://img.shields.io/badge/License-MIT-green.svg)
 
 </div>
