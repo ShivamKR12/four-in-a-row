@@ -159,18 +159,18 @@ class FourInARow:
         self.red_pile_rect = pygame.Rect(int(SPACESIZE / 2), WINDOWHEIGHT - int(3 * SPACESIZE / 2), SPACESIZE, SPACESIZE)
         self.black_pile_rect = pygame.Rect(WINDOWWIDTH - int(3 * SPACESIZE / 2), WINDOWHEIGHT - int(3 * SPACESIZE / 2), SPACESIZE, SPACESIZE)
         
-        self.red_img = pygame.transform.smoothscale(pygame.image.load(resource_path('4row_red.png')), (SPACESIZE, SPACESIZE))
-        self.black_img = pygame.transform.smoothscale(pygame.image.load(resource_path('4row_black.png')), (SPACESIZE, SPACESIZE))
-        self.board_img = pygame.transform.smoothscale(pygame.image.load(resource_path('4row_board.png')), (SPACESIZE, SPACESIZE))
+        self.red_img = pygame.transform.smoothscale(pygame.image.load(resource_path('assets/red.png')), (SPACESIZE, SPACESIZE))
+        self.black_img = pygame.transform.smoothscale(pygame.image.load(resource_path('assets/black.png')), (SPACESIZE, SPACESIZE))
+        self.board_img = pygame.transform.smoothscale(pygame.image.load(resource_path('assets/board.png')), (SPACESIZE, SPACESIZE))
 
-        self.human_winner_img = pygame.image.load(resource_path('4row_humanwinner.png'))
-        self.computer_winner_img = pygame.image.load(resource_path('4row_computerwinner.png'))
-        self.tie_winner_img = pygame.image.load(resource_path('4row_tie.png'))
+        self.human_winner_img = pygame.image.load(resource_path('assets/humanwinner.png'))
+        self.computer_winner_img = pygame.image.load(resource_path('assets/computerwinner.png'))
+        self.tie_winner_img = pygame.image.load(resource_path('assets/tie.png'))
         
         self.winner_rect = self.human_winner_img.get_rect()
         self.winner_rect.center = (int(WINDOWWIDTH / 2), int(WINDOWHEIGHT / 2))
 
-        self.arrow_img = pygame.image.load(resource_path('4row_arrow.png'))
+        self.arrow_img = pygame.image.load(resource_path('assets/arrow.png'))
         self.arrow_rect = self.arrow_img.get_rect()
         self.arrow_rect.left = self.red_pile_rect.right + 10
         self.arrow_rect.centery = self.red_pile_rect.centery
